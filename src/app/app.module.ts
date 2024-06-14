@@ -20,8 +20,7 @@ import { BotonSesionComponent } from './componentes/boton-sesion/boton-sesion.co
     NavbarComponent,
     UploadComponent,
     FotosComponent,
-    VideosComponent,
-    BotonSesionComponent
+    VideosComponent
   ],
   imports: [
     BrowserModule,
