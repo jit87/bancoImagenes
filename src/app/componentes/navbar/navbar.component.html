@@ -2,22 +2,29 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item" routerLink="active">
-                    <a class="nav-link text-light" aria-current="page" [routerLink]="['home']" >Home</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-light" aria-current="page" [routerLink]="['home']">Home</a>
                 </li>
-                <li class="nav-item" routerLink="active">
-                    <a class="nav-link text-light"  [routerLink]="['upload']">Subir imagen</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-light" [routerLink]="['upload']">Subir imagen</a>
                 </li>
-                <li class="nav-item" routerLink="active">
-                    <a class="nav-link text-light"  [routerLink]="['fotos']">Fotos</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-light" [routerLink]="['fotos']">Fotos</a>
                 </li>
-                <li class="nav-item" routerLink="active">
-                    <a class="nav-link text-light"  [routerLink]="['videos']">Vídeos</a>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-light" [routerLink]="['videos']">Vídeos</a>
                 </li>
             </ul>
-            <span class="navbar-text">
-                <a class="nav-link text-light" href="#">Iniciar sesión</a>
-            </span>
+            <ul>
+                <li *ngIf="auth.isAuthenticated$ | async; else loggedOut" class="nav-item">
+                    <button class="btn btn-danger" (click)="auth.logout()">Salir</button>
+                </li>
+                <ng-template #loggedOut>
+                    <li class="nav-item">
+                        <button class="btn btn-primary" (click)="auth.loginWithRedirect()">Iniciar sesión</button>
+                    </li>
+                </ng-template>
+            </ul>
         </div>
     </div>
 </nav>

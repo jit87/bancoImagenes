@@ -10,14 +10,14 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { UploadComponent } from './componentes/upload/upload.component';
 import { FotosComponent } from './componentes/fotos/fotos.component';
 import { VideosComponent } from './componentes/videos/videos.component';
-import { BotonSesionComponent } from './componentes/boton-sesion/boton-sesion.component';
+import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     NavbarComponent,
+    HomeComponent,
     UploadComponent,
     FotosComponent,
     VideosComponent
@@ -25,9 +25,21 @@ import { BotonSesionComponent } from './componentes/boton-sesion/boton-sesion.co
   imports: [
     BrowserModule,
     APP_ROUTING,
-    RouterModule
+    AuthModule.forRoot({
+      domain: "dev-12csjvjuyvgnl25b.eu.auth0.com",
+      clientId: "WKxIK678zaYDuVY4iUntwfrsCxHw3bdn",
+       authorizationParams: {
+         redirect_uri: window.location.origin
+      }
+    }),
   ],
-  providers: [],
+  providers: [ provideAuth0({
+      domain: 'dev-12csjvjuyvgnl25b.eu.auth0.com',
+      clientId: 'WKxIK678zaYDuVY4iUntwfrsCxHw3bdn',
+      authorizationParams: {
+        redirect_uri: window.location.origin
+      }
+    })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

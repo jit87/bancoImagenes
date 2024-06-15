@@ -1,4 +1,8 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { AuthService } from '@auth0/auth0-angular';
+import { NavbarComponent } from './componentes/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +11,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'bancoImagenes';
+
+  constructor(public auth: AuthService){}
 }
