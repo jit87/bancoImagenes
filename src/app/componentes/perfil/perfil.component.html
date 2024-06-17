@@ -1,0 +1,48 @@
+<h1 class="mt-4">Perfil de usuario</h1>
+<hr>
+
+<div *ngIf="auth.user$ | async as user" class="container mb-4">
+    <div class="row mb-2">
+        <div class="col-sm-3 font-weight-bold">Nombre:</div>
+        <div class="col-sm-9"><code>{{ user.name }}</code></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-3 font-weight-bold">Correo:</div>
+        <div class="col-sm-9"><code>{{ user.email }}</code></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-3 font-weight-bold">Nick:</div>
+        <div class="col-sm-9"><code>{{ user.nickname }}</code></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-3 font-weight-bold">Actualización:</div>
+        <div class="col-sm-9"><code>{{ user.updated_at }}</code></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-3 font-weight-bold">Usuario verificado:</div>
+        <div class="col-sm-9"><code>{{ user.email_verified }}</code></div>
+    </div>
+    <div class="row mb-2">
+        <div class="col-sm-3 font-weight-bold">ID:</div>
+        <div class="col-sm-9"><code>{{ user.sub }}</code></div>
+    </div>
+</div>
+
+<hr>
+
+<div class="container">
+    <div class="row">
+        <!-- Título -->
+        <div class="col-12 text-left">
+            <h4>Imágenes subidas</h4>
+        </div>
+    </div>
+    <div class="row">
+        <!-- Imágenes -->
+        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let image of images">
+            <div class="card h-100">
+                <img [src]="image.src" class="card-img-top" >
+            </div>
+        </div>
+    </div>
+</div>

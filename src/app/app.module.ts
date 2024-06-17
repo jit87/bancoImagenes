@@ -11,6 +11,7 @@ import { UploadComponent } from './componentes/upload/upload.component';
 import { FotosComponent } from './componentes/fotos/fotos.component';
 import { VideosComponent } from './componentes/videos/videos.component';
 import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
+import { PerfilComponent } from './componentes/perfil/perfil.component';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
     HomeComponent,
     UploadComponent,
     FotosComponent,
-    VideosComponent
+    VideosComponent,
+    PerfilComponent
   ],
   imports: [
     BrowserModule,

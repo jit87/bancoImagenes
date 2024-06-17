@@ -14,8 +14,11 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link text-light" [routerLink]="['videos']">Vídeos</a>
                 </li>
+                <li *ngIf="auth.isAuthenticated$ | async"  class="nav-item" routerLinkActive="active">
+                    <a class="nav-link text-light" [routerLink]="['perfil']">Mi perfil</a>
+                </li>
             </ul>
-            <ul>
+            <ul style="margin-top:10px;">
                 <li *ngIf="auth.isAuthenticated$ | async; else loggedOut" class="nav-item">
                     <button class="btn btn-danger" (click)="auth.logout()">Salir</button>
                 </li>
@@ -28,3 +31,4 @@
         </div>
     </div>
 </nav>
+
