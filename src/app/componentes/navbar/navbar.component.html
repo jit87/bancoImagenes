@@ -8,12 +8,6 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link text-light" [routerLink]="['upload']">Subir imagen</a>
                 </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link text-light" [routerLink]="['fotos']">Fotos</a>
-                </li>
-                <li class="nav-item" routerLinkActive="active">
-                    <a class="nav-link text-light" [routerLink]="['videos']">Vídeos</a>
-                </li>
                 <li *ngIf="auth.isAuthenticated$ | async"  class="nav-item" routerLinkActive="active">
                     <a class="nav-link text-light" [routerLink]="['perfil']">Mi perfil</a>
                 </li>

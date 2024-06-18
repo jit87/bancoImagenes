@@ -8,8 +8,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { UploadComponent } from './componentes/upload/upload.component';
-import { FotosComponent } from './componentes/fotos/fotos.component';
-import { VideosComponent } from './componentes/videos/videos.component';
 import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 
@@ -20,9 +18,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
     NavbarComponent,
     HomeComponent,
     UploadComponent,
-    FotosComponent,
-    VideosComponent,
-    PerfilComponent
+    PerfilComponent,
   ],
   imports: [
     BrowserModule,
