@@ -7,23 +7,31 @@ import { ImageService } from 'src/app/servicios/image-service.service';
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent implements OnInit {
+export class PerfilComponent  {
 
-  images: any;
+  images: string[] = []; 
 
-  constructor(public auth: AuthService, private imageService: ImageService) {}
+
+  constructor(public auth: AuthService, private imageService: ImageService) {
+    this.loadImages();
+   }
+  
 
   ngOnInit(): void {
-    this.mostrarImagenes();
+   
   }
 
-  mostrarImagenes() {
+   // Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
+  getImages(): string[] {
     const images = this.imageService.getImages();
     return images; 
-  
   }
 
-
+  // Cargar imágenes desde el localStorage
+  loadImages(): void {
+    const images = this.getImages();
+    this.images = images; 
+  }
 
 
 

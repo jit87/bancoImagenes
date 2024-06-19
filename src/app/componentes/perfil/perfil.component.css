@@ -1,0 +1,14 @@
+.image-container {
+    height: 100px;
+    width:200px; 
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img-preview {
+    height: 100%;
+    width: auto;  
+    object-fit: cover;
+}

@@ -11,7 +11,6 @@ export class UploadComponent {
   file: File | null = null; 
   imagePreview: string | ArrayBuffer | null = null; 
   images: string[] = []; 
-base64Image: any;
 
 
   constructor(public imageService: ImageService) {

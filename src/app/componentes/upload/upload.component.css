@@ -1,17 +1,17 @@
-.img-thumbnail {
-    max-height: 200px;
-    width: auto;
-   
-}
 
-.image-grid {
+
+
+.image-container {
+    height: 200px;
+    overflow: hidden;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
     justify-content: center;
 }
 
-.image-grid img {
+.img-preview {
+    height: 100%;
+    width: auto;
     object-fit: cover;
-   
+  
 }
