@@ -1,0 +1,17 @@
+.img-thumbnail {
+    max-height: 200px;
+    width: auto;
+   
+}
+
+.image-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.image-grid img {
+    object-fit: cover;
+   
+}

@@ -10,6 +10,18 @@ import { AuthService } from '@auth0/auth0-angular';
 })
 export class NavbarComponent {
 
-   constructor(public auth: AuthService, @Inject(DOCUMENT) private document: Document){}
+  constructor(public auth: AuthService, @Inject(DOCUMENT) private document: Document) { }
+
+  onLinkClick(event: Event) {
+    this.auth.isAuthenticated$.subscribe(isAuthenticated => {
+      if (!isAuthenticated) {
+        event.preventDefault();
+        alert('Debe estar autenticado para acceder a este enlace.');
+      } else {
+        window.location.href = 'upload';
+      }
+    });
+  }
+  
 
 }

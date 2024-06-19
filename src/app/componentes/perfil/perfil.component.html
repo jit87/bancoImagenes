@@ -39,10 +39,8 @@
     </div>
     <div class="row">
         <!-- Imágenes -->
-        <div class="col-lg-4 col-md-6 mb-4" *ngFor="let image of images">
-            <div class="card h-100">
-                <img [src]="image.src" class="card-img-top" >
+            <div class="col-md-3 mb-3" *ngFor="let img of images">
+                <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
             </div>
         </div>
-    </div>
 </div>

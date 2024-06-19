@@ -1,26 +1,34 @@
-import { Component } from '@angular/core';
-import { AuthService } from '@auth0/auth0-angular';
+import { Component, OnInit } from '@angular/core';
+import { AuthService, LocalStorageCache } from '@auth0/auth0-angular';
+import { ImageService } from 'src/app/servicios/image-service.service';
 
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent {
+export class PerfilComponent implements OnInit {
 
-  constructor(public auth: AuthService) { }
+  images: any;
 
-  images = [
-    {
-      src: 'https://via.placeholder.com/350x250',
-    },
-    {
-      src: 'https://via.placeholder.com/350x250',   
-    },
-    {
-      src: 'https://via.placeholder.com/350x250',
-    }
-    
-  ];
+  constructor(public auth: AuthService, private imageService: ImageService) {}
+
+  ngOnInit(): void {
+    this.mostrarImagenes();
+  }
+
+  mostrarImagenes() {
+    const images = this.imageService.getImages();
+    return images; 
+  
+  }
+
+
+
+
+
+
+
+
 
 }

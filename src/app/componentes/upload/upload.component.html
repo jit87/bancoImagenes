@@ -5,10 +5,22 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Subir Imagen</h5>
-                    <input type="file" class="form-control mb-3" accept="image/*" />
-                    <div  class="text-center">
-                        <img alt="Image Preview" class="img-thumbnail img-preview" />
+                    <input type="file" class="form-control mb-3" accept="image/*" (change)="onFileSelected($event)" />
+                    <div class="text-center mb-3">
+                        <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa de la imagen"
+                            class="img-thumbnail img-preview" />
                     </div>
+                    <button class="btn btn-primary" (click)="onUpload()" [disabled]="!file">Subir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <h5>Imágenes Subidas</h5>
+            <div class="row">
+                <div class="col-md-3 mb-3" *ngFor="let img of images">
+                    <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
                 </div>
             </div>
         </div>

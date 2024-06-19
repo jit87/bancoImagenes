@@ -10,6 +10,7 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { UploadComponent } from './componentes/upload/upload.component';
 import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     APP_ROUTING,
     AuthModule.forRoot({
       domain: "dev-12csjvjuyvgnl25b.eu.auth0.com",
@@ -29,7 +31,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
        authorizationParams: {
          redirect_uri: window.location.origin
       }
-    }),
+    })
   ],
   providers: [ provideAuth0({
       domain: 'dev-12csjvjuyvgnl25b.eu.auth0.com',
