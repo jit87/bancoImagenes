@@ -1,22 +1,20 @@
 <div class="container mt-4">
     <div class="row">
-        <!-- Título -->
         <div class="col-12 text-center">
             <h1>Galería de Imágenes</h1>
             <p>Explora nuestra colección de imágenes.</p>
         </div>
     </div>
-    <div class="row">
-        <!-- Imágenes -->
-        <div class="col-lg-4 col-md-6 mb-4">
-            <div class="card" *ngFor="let img of images">
-                <img src="https://via.placeholder.com/350x250" class="card-img-top" alt="Imagen 1">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text"></p>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="row">
+                <div class="col-md-3 mb-3" *ngFor="let img of images">
+                    <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
+                    <button class="btn btn-primary download-button" (click)="downloadImage(img)">
+                         Descargar
+                    </button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-

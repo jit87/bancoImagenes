@@ -8,7 +8,7 @@ import { PerfilComponent } from './componentes/perfil/perfil.component';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent     },
-  { path: "upload", component: UploadComponent, canActivate: [ AuthGuard] },
+  { path: "upload", component: UploadComponent, canActivate: [AuthGuard] },
   { path: "perfil", component: PerfilComponent, canActivate: [AuthGuard] },
   { path: "", redirectTo: "home", pathMatch: 'full' },
   { path: "**", redirectTo:"home", pathMatch:'full' }

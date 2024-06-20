@@ -11,6 +11,7 @@ import { UploadComponent } from './componentes/upload/upload.component';
 import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './componentes/footer/footer.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
     HomeComponent,
     UploadComponent,
     PerfilComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

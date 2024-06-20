@@ -32,13 +32,11 @@
 
 <div class="container">
     <div class="row">
-        <!-- Título -->
         <div class="col-12 text-left">
             <h4>Imágenes subidas</h4>
         </div>
     </div>
     <div class="row">
-        <!-- Imágenes -->
         <div class="col-md-3 mb-3" *ngFor="let img of images">
             <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
         </div>

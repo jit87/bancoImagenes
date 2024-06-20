@@ -11,15 +11,14 @@ export class UploadComponent {
   file: File | null = null; 
   imagePreview: string | ArrayBuffer | null = null; 
   images: string[] = []; 
-
+  tag: string = '';
 
   constructor(public imageService: ImageService) {
     this.loadImages();
   }
 
-
   ngOnInit(): void { }
-  
+
 
 
   // Manejar la selección de archivo por parte del usuario
@@ -30,17 +29,14 @@ export class UploadComponent {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result; 
-        // Guardar la imagen en el localStorage
-        this.saveImage(reader.result as string); 
+        this.imagePreview = reader.result; // Mostrar vista previa de la imagen
       };
-      //Leer el archivo como una URL de datos
+      // Leer el archivo como una URL de datos
       reader.readAsDataURL(this.file); 
     }
   }
 
 
-  
 
   // Guardar imagen en el localStorage
   saveImage(image: string): void {
@@ -54,6 +50,7 @@ export class UploadComponent {
 
 
 
+
   // Cargar imágenes desde el localStorage
   loadImages(): void {
     const images = this.getImages();
@@ -63,27 +60,30 @@ export class UploadComponent {
 
 
 
+
   // Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
   getImages(): string[] {
     const images = this.imageService.getImages();
-    // Devolver la lista de imágenes o una lista vacía si no hay imágenes guardadas
     return images; 
   }
 
 
 
+
   // Simulación de subida de archivo
   onUpload(): void {
-    if (this.file) {
+    if (this.file && this.imagePreview) {
       this.status = 'uploading';
       setTimeout(() => {
+        this.saveImage(this.imagePreview as string); // Guardar imagen en localStorage
         this.status = 'success'; 
+        this.imagePreview = null;
+        this.file = null;
       }, 1000); 
     }
   }
 
-
-
+  
 
 
 }

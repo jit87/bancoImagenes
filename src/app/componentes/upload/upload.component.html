@@ -6,6 +6,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Subir Imagen</h5>
                     <input type="file" class="form-control mb-3" accept="image/*" (change)="onFileSelected($event)" />
+                   <!-- <input type="text" class="form-control mb-3" placeholder="Etiqueta" (ngModel)="tag" />-->
                     <div class="text-center mb-3">
                         <img *ngIf="imagePreview" [src]="imagePreview" alt="Vista previa de la imagen"
                             class="img-thumbnail img-preview" />
