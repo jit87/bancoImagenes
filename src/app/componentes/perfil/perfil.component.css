@@ -12,3 +12,11 @@
     width: auto;  
     object-fit: cover;
 }
+
+.mensaje {
+    text-align: center;
+}
+
+.btn-close {
+    background-color: rgb(254, 0, 0);
+}

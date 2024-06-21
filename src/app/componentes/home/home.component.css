@@ -24,6 +24,10 @@
     margin-top: 10px; 
 }
 
+.mensaje {
+    text-align: center;
+}
+
 /*
 .download-button {
     position: absolute;

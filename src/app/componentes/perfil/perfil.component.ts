@@ -34,6 +34,12 @@ export class PerfilComponent  {
   }
 
 
+  eliminarImagen(img: string,i:number) {
+    this.imageService.deleteImage(img,i);
+    
+  }
+
+
 
 
 

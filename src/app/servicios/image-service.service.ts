@@ -13,7 +13,6 @@ export class ImageService {
   
 
   uploadImage(file: File): Observable<any> {
-
     const formData = new FormData();
     formData.append('file', file, file.name);
 
@@ -21,9 +20,20 @@ export class ImageService {
     return this.http.post("https://httpbin.org/post", formData); 
   }
 
+
+
   addImage(imageUrl: string): void {
     this.images.push(imageUrl);
   }
+
+
+ deleteImage(img:string, index: number): void {
+    // Eliminar la imagen del array en memoria
+    //this.images.splice(index);
+    // Actualizar el localStorage con el array actualizado
+    //localStorage.setItem('images', JSON.stringify(this.images));
+}
+
 
   // Obtener imágenes desde el localStorage
   getImages(): string[] {
@@ -31,6 +41,12 @@ export class ImageService {
     // Devolver la lista de imágenes o una lista vacía si no hay imágenes guardadas
     return images ? JSON.parse(images) : []; 
   }
+
+
+
+
+
+
 
 
 

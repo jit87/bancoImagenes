@@ -1,3 +1,18 @@
 .navbar {
     background-color: rgb(27, 46, 6); 
 }
+
+/*
+.container-fluid {
+    padding: 5px !important;
+    padding-right: 5px !important;
+}*/
+
+a {
+    color: white; 
+}
+
+
+.btn.btn-secondary {
+    margin-right: 15px!important;
+}
