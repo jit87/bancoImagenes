@@ -7,7 +7,7 @@ import { ImageService } from 'src/app/servicios/image-service.service';
   styleUrls: ['./upload.component.css']
 })
 export class UploadComponent {
-  status: "initial" | "uploading" | "success" | "fail" = "initial"; // Estado inicial del proceso de carga
+  status: "initial" | "uploading" | "success" | "fail" = "initial"; 
   file: File | null = null; 
   imagePreview: string | ArrayBuffer | null = null; 
   images: string[] = []; 
@@ -29,7 +29,7 @@ export class UploadComponent {
 
       const reader = new FileReader();
       reader.onload = () => {
-        this.imagePreview = reader.result; // Mostrar vista previa de la imagen
+        this.imagePreview = reader.result; 
       };
       // Leer el archivo como una URL de datos
       reader.readAsDataURL(this.file); 
@@ -79,7 +79,7 @@ export class UploadComponent {
         this.status = 'success'; 
         this.imagePreview = null;
         this.file = null;
-      }, 1000); 
+      }, 500); 
     }
   }
 
