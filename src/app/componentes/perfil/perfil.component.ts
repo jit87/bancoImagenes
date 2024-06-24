@@ -16,16 +16,19 @@ export class PerfilComponent  {
     this.loadImages();
    }
   
+  
 
   ngOnInit(): void {
    
   }
+
 
    // Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
   getImages(): string[] {
     const images = this.imageService.getImages();
     return images; 
   }
+
 
   // Cargar imágenes desde el localStorage
   loadImages(): void {
@@ -34,13 +37,20 @@ export class PerfilComponent  {
   }
 
 
-  eliminarImagen(img: string,i:number) {
-    this.imageService.deleteImage(img,i);
-    
-  }
+  
+   //Eliminamos la imagen en función del índice, una vez encontrado cortamos el bucle.
+  deleteImage(index: number): void {
+    for (var i = 0; 0 <= this.images.length; i++){
+      if (i == index) {
+        this.images.splice(i,1);
+        localStorage.setItem('images', JSON.stringify(this.images));
+        break; 
+      }
+    }
+ }
 
-
-
+  
+  
 
 
 

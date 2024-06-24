@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-md-3 mb-3 position-relative" *ngFor="let img of images; let i = index">
             <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close"
-                (click)="eliminarImagen(img, i)"></button>
+                (click)="deleteImage(i)"></button>
             <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
         </div>
     </div>

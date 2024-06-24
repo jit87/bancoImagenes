@@ -27,12 +27,11 @@ export class ImageService {
   }
 
 
- deleteImage(img:string, index: number): void {
-    // Eliminar la imagen del array en memoria
-    //this.images.splice(index);
-    // Actualizar el localStorage con el array actualizado
-    //localStorage.setItem('images', JSON.stringify(this.images));
-}
+  
+  //Guardar imagen en el LocalStorage
+  saveImage(images: string[]) {
+     localStorage.setItem('images', JSON.stringify(images)); 
+  }
 
 
   // Obtener imágenes desde el localStorage
@@ -41,7 +40,6 @@ export class ImageService {
     // Devolver la lista de imágenes o una lista vacía si no hay imágenes guardadas
     return images ? JSON.parse(images) : []; 
   }
-
 
 
 

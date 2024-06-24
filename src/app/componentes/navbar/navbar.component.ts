@@ -16,7 +16,7 @@ export class NavbarComponent {
     this.auth.isAuthenticated$.subscribe(isAuthenticated => {
       if (!isAuthenticated) {
         event.preventDefault();
-        alert('Debe estar autenticado para acceder a este enlace.');
+        alert('Debe estar autenticado para acceder a este enlace. Inicie sesión');
       } else {
         window.location.href = 'upload';
       }
