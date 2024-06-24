@@ -42,7 +42,7 @@ export class UploadComponent {
   saveImage(image: string): void {
     const images = this.getImages();
     images.push(image);
-    // Guardar la lista actualizada de imágenes en el localStorage
+    // Guardar la lista actualizada de imágenes en el localStorage, (funcion definida en el servicio imageService)
     this.imageService.saveImage(images);
     // Volver a cargar las imágenes guardadas
     this.loadImages(); 
@@ -75,7 +75,7 @@ export class UploadComponent {
     if (this.file && this.imagePreview) {
       this.status = 'uploading';
       setTimeout(() => {
-        this.saveImage(this.imagePreview as string); // Guardar imagen en localStorage
+        this.saveImage(this.imagePreview as string); 
         this.status = 'success'; 
         this.imagePreview = null;
         this.file = null;

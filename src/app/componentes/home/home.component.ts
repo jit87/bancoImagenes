@@ -21,11 +21,13 @@ export class HomeComponent {
    
   }
 
+
    //Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
   getImages(): string[] {
     const images = this.imageService.getImages();
     return images; 
   }
+
 
   //Cargar imágenes desde el localStorage
   loadImages(): void {
@@ -34,11 +36,13 @@ export class HomeComponent {
   }
 
 
+
   //Descargar imagen desde el LocalStorage
-  downloadImage(img: any) {
-   
-  
+  async downloadImage(img: any) {
+    this.imageService.downloadImage(img);
   }
+
+ 
   
   
   

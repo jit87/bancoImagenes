@@ -43,6 +43,23 @@ export class ImageService {
 
 
 
+  //Descargar imagen desde el LocalStorage
+  async downloadImage(img: any) {
+    const image = await fetch(img)
+    const imageBlog = await image.blob()
+    const imageURL = URL.createObjectURL(imageBlog)
+
+    const link = document.createElement('a')
+    link.href = imageURL
+    link.download = 'image' + imageURL; 
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+}
+
+
+
+
 
 
 
