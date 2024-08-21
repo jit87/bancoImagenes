@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import 'firebase/compat/storage';
+import { finalize } from 'rxjs/operators';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { getStorage, ref,listAll, getDownloadURL } from "firebase/storage";
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,38 +16,66 @@ export class ImageService {
 
   private images: string[] = []; 
 
-  constructor(private http: HttpClient) { }
+
+
+  constructor(private http: HttpClient, private storage: AngularFireStorage, private firestore: AngularFirestore) { }
   
 
-  uploadImage(file: File): Observable<any> {
-    const formData = new FormData();
-    formData.append('file', file, file.name);
 
-    //Sustituir por la dirección del backend
-    return this.http.post("https://httpbin.org/post", formData); 
+  saveImage(images: string[], collectionName: string) {
+   // localStorage.setItem('images', JSON.stringify(images)); 
+    
+      images.forEach((image, index) => {
+          const filePath = `uploads/image_${index + 1}.jpg`; 
+          const blob = this.base64ToBlob(image, 'image/jpeg');
+          const fileRef = this.storage.ref(filePath); 
+          const task = this.storage.upload(filePath, blob);
+
+          task.snapshotChanges().pipe(
+            finalize(() => {
+              fileRef.getDownloadURL().subscribe(url => {
+                console.log('Imagen subida con éxito:', url);
+                //Guardamos la referencia en Firestore
+                this.saveToFirestore(url, collectionName);
+              });
+            })
+          ).subscribe();
+    });
   }
 
 
 
-  addImage(imageUrl: string): void {
-    this.images.push(imageUrl);
-  }
-
-
-  
-  //Guardar imagen en el LocalStorage
-  saveImage(images: string[]) {
-     localStorage.setItem('images', JSON.stringify(images)); 
+  private saveToFirestore(url: string, collectionName: string) {
+    this.firestore.collection(collectionName).add({ imageUrl: url })
+      .then(() => {
+        console.log('URL almacenada en Firestore con éxito');
+      })
+      .catch(error => {
+        console.error('Error al almacenar la URL en Firestore:', error);
+      });
   }
 
 
   // Obtener imágenes desde el localStorage
   getImages(): string[] {
     const images = localStorage.getItem('images');
-    // Devolver la lista de imágenes o una lista vacía si no hay imágenes guardadas
+    
+      // Initialize Firebase Storage
+    const storage = getStorage();
+  
+    const imagesRef = ref(storage, 'uploads/');
+
+    // Lista todos los elementos en el directorio 'uploads/'
+    const listResult = listAll(imagesRef);
+
+    console.log(listResult); 
+    
+  
     return images ? JSON.parse(images) : []; 
   }
 
+
+  
 
 
   //Descargar imagen desde el LocalStorage
@@ -58,6 +93,19 @@ export class ImageService {
 }
 
 
+  
+ base64ToBlob(base64: string, contentType: string): Blob {
+   const byteCharacters = atob(base64.split(',')[1]);
+   const byteNumbers = new Array(byteCharacters.length);
+   
+  for (let i = 0; i < byteCharacters.length; i++) {
+    byteNumbers[i] = byteCharacters.charCodeAt(i);
+  }
+   
+   const byteArray = new Uint8Array(byteNumbers);
+   return new Blob([byteArray], { type: contentType });
+   
+}
 
 
 
