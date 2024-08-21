@@ -8,9 +8,10 @@ import { ImageService } from 'src/app/servicios/image-service.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-  images: any;
-  
 
+
+  imageUrls: any;
+  
 
   constructor(public auth: AuthService, private imageService: ImageService) {
     this.loadImages();
@@ -22,22 +23,17 @@ export class HomeComponent {
   }
 
 
-   //Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
-  getImages(): string[] {
-    const images = this.imageService.getImages();
-    return images; 
-  }
-
-
-  //Cargar imágenes desde el localStorage
-  loadImages(): void {
-    const images = this.getImages();
-    this.images = images; 
+ 
+  // Cargar imágenes desde Firebase
+  async loadImages(): Promise<void> {
+    this.imageUrls = await this.imageService.getUrl();
   }
 
 
 
-  //Descargar imagen desde el LocalStorage
+
+
+  //Descargar imagen desde Firebase
   async downloadImage(img: any) {
     this.imageService.downloadImage(img);
   }

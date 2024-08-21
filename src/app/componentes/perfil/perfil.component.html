@@ -30,18 +30,16 @@
 
 <hr>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 text-left">
-            <h4>Imágenes subidas</h4>
+<div class="container mt-4">
+    <h5>Imágenes Subidas</h5>
+    <div class="image-grid">
+        <p class="mensaje" *ngIf="imageUrls.length == 0">No hay imágenes cargadas</p>
+        <div class="image-item" *ngFor="let url of imageUrls">
+            <button type="button" class="btn btn-close" (click)="deleteImage(url)"></button>
+            <img [src]="url" alt="Imagen subida" class="img-thumbnail img-preview" />
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-3 mb-3 position-relative" *ngFor="let img of images; let i = index">
-            <button type="button" class="btn-close position-absolute top-0 end-0 m-2" aria-label="Close"
-                (click)="deleteImage(i)"></button>
-            <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
-        </div>
-    </div>
-    <p class="mensaje" *ngIf="images.length == 0">No hay imágenes cargadas</p>
 </div>
+
+
+

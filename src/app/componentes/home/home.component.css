@@ -19,7 +19,7 @@
 }
 
 
-.download-button {
+.btn.btn-outline-primary {
     margin-left:35%; 
     margin-top: 10px; 
 }

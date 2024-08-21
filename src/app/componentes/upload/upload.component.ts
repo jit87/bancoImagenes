@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ImageService } from 'src/app/servicios/image-service.service';
 
 @Component({
@@ -6,18 +6,28 @@ import { ImageService } from 'src/app/servicios/image-service.service';
   templateUrl: './upload.component.html',
   styleUrls: ['./upload.component.css']
 })
-export class UploadComponent {
+export class UploadComponent implements OnInit {
+
+
+
   status: "initial" | "uploading" | "success" | "fail" = "initial"; 
   file: File | null = null; 
   imagePreview: string | ArrayBuffer | null = null; 
   images: string[] = []; 
   tag: string = '';
+  imageUrls: string[] = [];
+  uploadProgress: number = 0; 
 
-  constructor(public imageService: ImageService) {
+
+
+  constructor(public imageService: ImageService) {}
+
+
+
+  ngOnInit(): void {
     this.loadImages();
   }
 
-  ngOnInit(): void { }
 
 
 
@@ -38,52 +48,41 @@ export class UploadComponent {
 
 
 
-  // Guardar imagen en el localStorage
-  saveImage(image: string): void {
-    const images = this.getImages();
-    images.push(image);
-    // Guardar la lista actualizada de imágenes en el localStorage, (funcion definida en el servicio imageService)
-    this.imageService.saveImage(images, 'imagenes');
-    // Volver a cargar las imágenes guardadas
-    this.loadImages(); 
-  }
 
 
-
-
-  // Cargar imágenes desde el localStorage
-  loadImages(): void {
-    const images = this.getImages();
-    // Actualizar la lista de imágenes en el componente
-    this.images = images; 
-  }
-
-
-
-
-  // Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
-  getImages(): string[] {
-    const images = this.imageService.getImages();
-    return images; 
-  }
-
-
-
-
-  // Simulación de subida de archivo
-  onUpload(): void {
-    if (this.file && this.imagePreview) {
+  // Subir el archivo y actualizar la lista de imágenes
+  async onUpload(): Promise<void> {
+    if (this.file) {
       this.status = 'uploading';
-      setTimeout(() => {
-        this.saveImage(this.imagePreview as string); 
-        this.status = 'success'; 
+      try {
+        await this.imageService.saveImage(this.file, 'uploads', (progress) => {
+          this.uploadProgress = progress;
+        });
+        this.status = 'success';
         this.imagePreview = null;
         this.file = null;
-      }, 500); 
+        this.loadImages();
+      } catch (error) {
+        console.error('Error saving image:', error);
+        this.status = 'fail';
+      }
     }
   }
 
-  
+
+
+
+  // Cargar imágenes desde Firebase
+  async loadImages(): Promise<void> {
+    this.imageUrls = await this.imageService.getUrl();
+  }
+
+
+
+
+
+
+
 
 
 }

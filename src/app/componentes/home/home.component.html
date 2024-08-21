@@ -5,16 +5,17 @@
             <p>Explora nuestra colección de imágenes.</p>
         </div>
     </div>
-    <div class="row mt-4">
-        <div class="col-12">
-            <div class="row">
-                <div class="col-md-3 mb-3" *ngFor="let img of images">
-                    <img [src]="img" alt="Imagen subida" class="img-thumbnail img-preview" />
-                    <button class="btn btn-primary download-button" (click)="downloadImage(img)">
-                         Descargar
-                    </button>
-                </div>
-                <p class="mensaje" *ngIf="images.length==0" >No hay imágenes cargadas</p>
+
+    </div>
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="row">
+            <p class="mensaje" *ngIf="imageUrls.length == 0">No hay imágenes cargadas</p>
+            <div class="col-md-3 mb-3" *ngFor="let url of imageUrls">
+                <img [src]="url" alt="Imagen subida" class="img-thumbnail img-preview" />
+                <button class="btn btn-outline-primary" (click)="downloadImage(url)">
+                    Descargar
+                </button>
             </div>
         </div>
     </div>

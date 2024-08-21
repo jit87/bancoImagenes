@@ -9,7 +9,13 @@ import { ImageService } from 'src/app/servicios/image-service.service';
 })
 export class PerfilComponent  {
 
+  status: "initial" | "uploading" | "success" | "fail" = "initial"; 
+  file: File | null = null; 
+  imagePreview: string | ArrayBuffer | null = null; 
   images: string[] = []; 
+  tag: string = '';
+  imageUrls: string[] = [];
+  uploadProgress: number = 0; 
 
 
   constructor(public auth: AuthService, private imageService: ImageService) {
@@ -23,31 +29,23 @@ export class PerfilComponent  {
   }
 
 
-   // Obtener imágenes desde el localStorage (funcion definida en el servicio imageService)
-  getImages(): string[] {
-    const images = this.imageService.getImages();
-    return images; 
-  }
 
-
-  // Cargar imágenes desde el localStorage
-  loadImages(): void {
-    const images = this.getImages();
-    this.images = images; 
+  // Cargar imágenes desde Firebase
+  async loadImages(): Promise<void> {
+    this.imageUrls = await this.imageService.getUrl();
   }
 
 
   
-   //Eliminamos la imagen en función del índice, una vez encontrado cortamos el bucle.
-  deleteImage(index: number): void {
-    for (var i = 0; 0 <= this.images.length; i++){
-      if (i == index) {
-        this.images.splice(i,1);
-        localStorage.setItem('images', JSON.stringify(this.images));
-        break; 
-      }
+   //Eliminamos la imagen
+  async deleteImage(imageUrl: string): Promise<void> {
+    try {
+      await this.imageService.deleteImage(imageUrl, 'uploads');
+      await this.loadImages(); // Recargar la lista de imágenes después de eliminar
+    } catch (error) {
+      console.error('Error deleting image:', error);
     }
- }
+  }
 
   
   

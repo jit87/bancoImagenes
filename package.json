@@ -506,6 +506,7 @@
     "strip-final-newline": "^2.0.0",
     "supports-color": "^5.5.0",
     "supports-preserve-symlinks-flag": "^1.0.0",
+    "sweetalert2": "^11.12.4",
     "symbol-observable": "^4.0.0",
     "symbol-tree": "^3.2.4",
     "tapable": "^2.2.1",

@@ -1,23 +1,28 @@
-.image-container {
-    height: 100px;
-    width:200px; 
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* Estilo para el contenedor de la cuadrícula */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
 }
 
-.img-preview {
-    height: 100%;
-    width: auto;  
+/* Estilo para cada ítem de imagen */
+.image-item {
+    position: relative;
+    overflow: hidden;
+}
+
+/* Estilo para la imagen */
+.img-thumbnail {
+    width: 100%;
+    height: 150px;
     object-fit: cover;
 }
 
-.mensaje {
-    text-align: center;
-}
-
+/* Estilo para el botón de cerrar */
 .btn-close {
-    background-color: rgb(254, 0, 0);
-    margin-right: 21px !important;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 1;
+    background-color:red; 
 }
