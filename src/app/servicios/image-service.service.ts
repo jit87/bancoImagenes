@@ -71,7 +71,7 @@ export class ImageService {
 
   
 
-  // Obtener URLs de las imágenes desde Firebase Storage
+  // Obtener URLs de las imágenes desde Firebase Storage para imprimir las imágenes
   async getUrl(): Promise<string[]> {
     const storage = getStorage();
     const imagesRef = ref(storage, 'uploads/');
