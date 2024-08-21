@@ -98,37 +98,24 @@ export class ImageService {
    
   async downloadImage(imageUrl: string, imageName: string = 'image'): Promise<void> {
     try {
-        // Obtén la imagen desde la URL
-        const response = await fetch(imageUrl);
-        if (!response.ok) {
-            throw new Error('Error fetching the image.');
-        }
+      const response = await fetch(imageUrl, { mode: 'no-cors' });
+      const imageBlob = await response.blob();
+      const imageObjectURL = URL.createObjectURL(imageBlob);
 
-        // Convierte la respuesta a un blob
-        const imageBlob = await response.blob();
-        
-        // Crea un objeto URL para el blob
-        const imageObjectURL = URL.createObjectURL(imageBlob);
+      const link = document.createElement('a');
+      link.href = imageObjectURL;
+      link.download = `${imageName}.jpg`;
 
-        // Crea un enlace temporal para la descarga
-        const link = document.createElement('a');
-        link.href = imageObjectURL;
-        // Usa el nombre de la imagen proporcionado o un nombre por defecto
-        link.download = `${imageName}.jpg`; 
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
 
-        // Adjunta el enlace al documento, haz clic en él, luego elimínalo
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-
-        // Revoca el objeto URL para liberar memoria
-        URL.revokeObjectURL(imageObjectURL);
-
+      URL.revokeObjectURL(imageObjectURL);
     } catch (error) {
-        console.error('Error downloading image:', error);
+      console.error('Error downloading image:', error);
     }
-}
-  
+  }
+
   
   
   

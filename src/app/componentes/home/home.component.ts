@@ -10,7 +10,7 @@ import { ImageService } from 'src/app/servicios/image-service.service';
 export class HomeComponent {
 
 
-  imageUrls: any;
+  imageUrls: string[] = [];
   
 
   constructor(public auth: AuthService, private imageService: ImageService) {
