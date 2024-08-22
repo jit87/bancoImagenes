@@ -95,26 +95,27 @@ export class ImageService {
 
 
   
-   
+    
   async downloadImage(imageUrl: string, imageName: string = 'image'): Promise<void> {
     try {
-      const response = await fetch(imageUrl, { mode: 'no-cors' });
-      const imageBlob = await response.blob();
-      const imageObjectURL = URL.createObjectURL(imageBlob);
+      const response = await fetch(imageUrl, { mode: 'cors' }); 
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
 
       const link = document.createElement('a');
-      link.href = imageObjectURL;
-      link.download = `${imageName}.jpg`;
-
+      link.href = url;
+      link.setAttribute('download', `${imageName}.jpg`); 
       document.body.appendChild(link);
       link.click();
-      document.body.removeChild(link);
 
-      URL.revokeObjectURL(imageObjectURL);
+      document.body.removeChild(link);
+      window.URL.revokeObjectURL(url); 
     } catch (error) {
       console.error('Error downloading image:', error);
     }
   }
+
+
 
   
   

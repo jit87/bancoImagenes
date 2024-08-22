@@ -7,6 +7,7 @@ import { environment } from 'src/environments/environment';
 
 
 
+
 import { APP_ROUTING } from './app-routing.module';
 
 import { AppComponent } from './app.component';
@@ -17,6 +18,7 @@ import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
 import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { SpinnerComponent } from './componentes/spinner/spinner.component';
 
 
 
@@ -28,6 +30,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
     UploadComponent,
     PerfilComponent,
     FooterComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

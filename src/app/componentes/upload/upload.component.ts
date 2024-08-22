@@ -17,6 +17,7 @@ export class UploadComponent implements OnInit {
   tag: string = '';
   imageUrls: string[] = [];
   uploadProgress: number = 0; 
+  isLoading: boolean = false;
 
 
 
@@ -74,7 +75,9 @@ export class UploadComponent implements OnInit {
 
   // Cargar imágenes desde Firebase
   async loadImages(): Promise<void> {
+    this.isLoading = true;
     this.imageUrls = await this.imageService.getUrl();
+    this.isLoading = false;
   }
 
 

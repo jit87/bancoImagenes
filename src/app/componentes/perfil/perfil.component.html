@@ -1,4 +1,4 @@
-<h1 class="mt-4">Perfil de usuario</h1>
+<h1 class="mt-4 display-6">Perfil de usuario</h1>
 <hr>
 
 <div *ngIf="auth.user$ | async as user" class="container mb-4">
@@ -28,12 +28,13 @@
     </div>
 </div>
 
-<hr>
-
+<br>
 <div class="container mt-4">
-    <h5>Imágenes Subidas</h5>
+    <app-spinner [isLoading]="isLoading"></app-spinner>
+    <h5 class="display-6">Imágenes Subidas</h5>
+    <hr>
     <div class="image-grid">
-        <p class="mensaje" *ngIf="imageUrls.length == 0">No hay imágenes cargadas</p>
+        <p class="mensaje" *ngIf="imageUrls.length == 0 && !isLoading">No hay imágenes cargadas</p>
         <div class="image-item" *ngFor="let url of imageUrls">
             <button type="button" class="btn btn-close" (click)="deleteImage(url)"></button>
             <img [src]="url" alt="Imagen subida" class="img-thumbnail img-preview" />

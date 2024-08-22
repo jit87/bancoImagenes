@@ -16,6 +16,7 @@ export class PerfilComponent  {
   tag: string = '';
   imageUrls: string[] = [];
   uploadProgress: number = 0; 
+  isLoading: boolean = false;
 
 
   constructor(public auth: AuthService, private imageService: ImageService) {
@@ -32,7 +33,9 @@ export class PerfilComponent  {
 
   // Cargar imágenes desde Firebase
   async loadImages(): Promise<void> {
+    this.isLoading = true;
     this.imageUrls = await this.imageService.getUrl();
+    this.isLoading = false;
   }
 
 

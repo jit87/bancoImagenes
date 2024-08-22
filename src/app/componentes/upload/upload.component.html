@@ -21,11 +21,14 @@
             </div>
         </div>
     </div>
+    <br>
     <div class="row mt-4">
+        <app-spinner [isLoading]="isLoading"></app-spinner>
         <div class="col-12">
-            <h5>Imágenes Subidas</h5>
+            <h5 class="display-6">Imágenes Subidas</h5>
+            <br>
             <div class="row">
-                <p class="mensaje" *ngIf="imageUrls.length == 0">No hay imágenes cargadas</p>
+                <p class="mensaje" *ngIf="imageUrls.length == 0 && !isLoading">No hay imágenes cargadas</p>
                 <div class="col-md-3 mb-3" *ngFor="let url of imageUrls">
                     <img [src]="url" alt="Imagen subida" class="img-thumbnail img-preview" />
                 </div>
