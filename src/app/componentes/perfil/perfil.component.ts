@@ -44,7 +44,7 @@ export class PerfilComponent  {
   async deleteImage(imageUrl: string): Promise<void> {
     try {
       await this.imageService.deleteImage(imageUrl, 'uploads');
-      await this.loadImages(); // Recargar la lista de imágenes después de eliminar
+      await this.loadImages(); 
     } catch (error) {
       console.error('Error deleting image:', error);
     }
