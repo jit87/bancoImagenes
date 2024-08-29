@@ -5,37 +5,24 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 
-
-
-
 import { APP_ROUTING } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './componentes/home/home.component';
-import { NavbarComponent } from './componentes/navbar/navbar.component';
-import { UploadComponent } from './componentes/upload/upload.component';
 import { AuthModule, provideAuth0 } from '@auth0/auth0-angular';
-import { PerfilComponent } from './componentes/perfil/perfil.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FooterComponent } from './componentes/footer/footer.component';
-import { SpinnerComponent } from './componentes/spinner/spinner.component';
+import { ComponentesModule } from './componentes/componentes.module';
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    HomeComponent,
-    UploadComponent,
-    PerfilComponent,
-    FooterComponent,
-    SpinnerComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
+    ComponentesModule,
     APP_ROUTING,
+    HttpClientModule,
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
@@ -47,7 +34,7 @@ import { SpinnerComponent } from './componentes/spinner/spinner.component';
       }
     })
   ],
-  providers: [ provideAuth0({
+  providers: [provideAuth0({
       domain: 'dev-12csjvjuyvgnl25b.eu.auth0.com',
       clientId: 'WKxIK678zaYDuVY4iUntwfrsCxHw3bdn',
       authorizationParams: {
